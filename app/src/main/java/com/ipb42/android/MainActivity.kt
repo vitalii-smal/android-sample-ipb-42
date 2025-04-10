@@ -10,8 +10,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.ipb42.android.counter.CounterView
-import com.ipb42.android.counter.CounterViewModel
+import com.ipb42.android.counter.EmployeesView
+import com.ipb42.android.employees.EmployeesViewModel
 import com.ipb42.android.ui.theme.AndroidTheme
 
 class MainActivity : ComponentActivity() {
@@ -21,10 +21,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             AndroidTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    CounterView(
-                        viewModel = CounterViewModel(),
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    EmployeesView(viewModel = EmployeesViewModel(), modifier = Modifier.padding(innerPadding))
                 }
             }
         }
@@ -35,6 +32,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     AndroidTheme {
-        CounterView(viewModel = CounterViewModel())
+        EmployeesView(viewModel = EmployeesViewModel())
     }
 }
