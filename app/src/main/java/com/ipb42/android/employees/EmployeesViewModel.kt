@@ -14,6 +14,9 @@ class EmployeesViewModel : ViewModel() {
     private val _employees = MutableStateFlow<List<Employee>>(emptyList())
     val employees: StateFlow<List<Employee>> = _employees
 
+    private val _errorMessage = MutableStateFlow<String?>(null)
+    val errorMessage: StateFlow<String?> = _errorMessage
+
     init {
         loadEmployees()
     }
@@ -21,9 +24,10 @@ class EmployeesViewModel : ViewModel() {
     private fun loadEmployees() {
         viewModelScope.launch {
             try {
+                _errorMessage.value = null
                 _employees.value = api.fetchEmployees()
             } catch (e: Exception) {
-                _employees.value = emptyList()
+                _errorMessage.value = "Помилка завантаження: ${e.localizedMessage}"
             }
         }
     }
