@@ -8,8 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class EmployeesViewModel : ViewModel() {
-    private val api = ApiDataSource()
+class EmployeesViewModel(private val api: ApiDataSource) : ViewModel() {
 
     private val _employees = MutableStateFlow<List<Employee>>(emptyList())
     val employees: StateFlow<List<Employee>> = _employees

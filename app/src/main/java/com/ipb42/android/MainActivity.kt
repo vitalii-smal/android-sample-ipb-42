@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.ipb42.android.counter.EmployeesView
+import com.ipb42.android.datasource.ApiDataSourceImpl
 import com.ipb42.android.employees.EmployeesViewModel
 import com.ipb42.android.ui.theme.AndroidTheme
 
@@ -21,7 +22,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             AndroidTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    EmployeesView(viewModel = EmployeesViewModel(), modifier = Modifier.padding(innerPadding))
+                    EmployeesView(viewModel = EmployeesViewModel(ApiDataSourceImpl()), modifier = Modifier.padding(innerPadding))
                 }
             }
         }
@@ -32,6 +33,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     AndroidTheme {
-        EmployeesView(viewModel = EmployeesViewModel())
+        EmployeesView(viewModel = EmployeesViewModel(ApiDataSourceImpl()))
     }
 }
